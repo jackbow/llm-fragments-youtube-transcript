@@ -1,0 +1,28 @@
+[project]
+name = "llm-fragments-reader"
+version = "0.1"
+description = "Run URLs through the Jina Reader API"
+readme = "README.md"
+authors = [{name = "Simon Willison"}]
+license = "Apache-2.0"
+classifiers = []
+requires-python = ">=3.9"
+dependencies = [
+    "llm"
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project.urls]
+Homepage = "https://github.com/simonw/llm-fragments-reader"
+Changelog = "https://github.com/simonw/llm-fragments-reader/releases"
+Issues = "https://github.com/simonw/llm-fragments-reader/issues"
+CI = "https://github.com/simonw/llm-fragments-reader/actions"
+
+[project.entry-points.llm]
+fragments_reader = "llm_fragments_reader"
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-httpx"]

@@ -1,28 +1,26 @@
 [project]
-name = "llm-fragments-reader"
+name = "llm-fragments-site-text"
 version = "0.1"
-description = "Run URLs through the Jina Reader API"
+description = "Run URLs through the Trafilatura to get plain text"
 readme = "README.md"
-authors = [{name = "Simon Willison"}]
+authors = [{ name = "Dan Turkel" }, { name = "Simon Willison" }]
 license = "Apache-2.0"
 classifiers = []
 requires-python = ">=3.9"
-dependencies = [
-    "llm"
-]
+dependencies = ["llm", "trafilatura>=2.0.0"]
 
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project.urls]
-Homepage = "https://github.com/simonw/llm-fragments-reader"
-Changelog = "https://github.com/simonw/llm-fragments-reader/releases"
-Issues = "https://github.com/simonw/llm-fragments-reader/issues"
-CI = "https://github.com/simonw/llm-fragments-reader/actions"
+Homepage = "https://github.com/daturkel/llm-fragments-site-text"
+Changelog = "https://github.com/daturkel/llm-fragments-site-text/releases"
+Issues = "https://github.com/daturkel/llm-fragments-site-text/issues"
+CI = "https://github.com/daturkel/llm-fragments-site-text/actions"
 
 [project.entry-points.llm]
-fragments_reader = "llm_fragments_reader"
+fragments_site_text = "llm_fragments_site_text"
 
 [project.optional-dependencies]
 test = ["pytest", "pytest-httpx"]

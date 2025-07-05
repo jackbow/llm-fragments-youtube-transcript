@@ -1,26 +1,27 @@
 [project]
-name = "llm-fragments-site-text"
+name = "llm-fragments-youtube-transcript"
 version = "0.1"
-description = "Run URLs through the Trafilatura to get plain text"
+description = "Fetch youtube transcripts and convert them into plaintext for llm consumption."
 readme = "README.md"
-authors = [{ name = "Dan Turkel" }, { name = "Simon Willison" }]
-license = "Apache-2.0"
+authors = [{ name = "Jack Bowman" }, { name = "Dan Turkel" }, { name = "Simon Willison" }]
+license = "MIT"
 classifiers = []
 requires-python = ">=3.9"
-dependencies = ["llm", "trafilatura>=2.0.0"]
+dependencies = [
+    "llm",
+    "youtube-transcript-api>=1.1.1",
+    "yt-dlp",
+]
 
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project.urls]
-Homepage = "https://github.com/daturkel/llm-fragments-site-text"
-Changelog = "https://github.com/daturkel/llm-fragments-site-text/releases"
-Issues = "https://github.com/daturkel/llm-fragments-site-text/issues"
-CI = "https://github.com/daturkel/llm-fragments-site-text/actions"
+Homepage = "https://github.com/jackbow/llm-fragments-youtube-transcript"
+Changelog = "https://github.com/jackbow/llm-fragments-youtube-transcript/releases"
+Issues = "https://github.com/jackbow/llm-fragments-youtube-transcript/issues"
+CI = "https://github.com/jackbow/llm-fragments-youtube-transcript/actions"
 
 [project.entry-points.llm]
-fragments_site_text = "llm_fragments_site_text"
-
-[project.optional-dependencies]
-test = ["pytest", "pytest-httpx"]
+fragments_youtube_transcript = "llm_fragments_youtube_transcript"

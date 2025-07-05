@@ -1,62 +1,55 @@
-# llm-fragments-site-text
+# llm-fragments-youtube-transcript
 
-A fragment loader for [LLM](https://llm.datasette.io/) that converts websites into markdown plaintext using [Trafilatura](https://trafilatura.readthedocs.io/).
+A fragment loader for [LLM](https://llm.datasette.io/) that converts youtube transcripts into plaintext using [youtube-transcript-api](https://github.com/jdepoix/youtube-transcript-api) and [yt-dlp](https://github.com/yt-dlp/yt-dlp).
 
-[![PyPI](https://img.shields.io/pypi/v/llm-fragments-site-text.svg)](https://pypi.org/project/llm-fragments-site-text/)
-[![Changelog](https://img.shields.io/github/v/release/daturkel/llm-fragments-site-text?include_prereleases&label=changelog)](https://github.com/daturkel/llm-fragments-site-text/releases)
-[![Test suite](https://github.com/daturkel/llm-fragments-site-text/actions/workflows/test.yml/badge.svg)](https://github.com/daturkel/llm-fragments-site-text/actions/workflows/test.yml)
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/daturkel/llm-fragments-site-text/blob/main/LICENSE)
+yt-dlp is used for metadata (title, uploader, date, description) and youtube-transcript-api is used to fetch the transcript. yt-dlp at time of writing can only write subs to disk.
+
+[![PyPI](https://img.shields.io/pypi/v/llm-fragments-youtube-transcript.svg)](https://pypi.org/project/llm-fragments-youtube-transcript/)
+[![Changelog](https://img.shields.io/github/v/release/jackbow/llm-fragments-youtube-transcript?include_prereleases&label=changelog)](https://github.com/jackbow/llm-fragments-youtube-transcript/releases)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jackbow/llm-fragments-youtube-transcript/blob/main/LICENSE)
+
+## To do
+
+- [ ] Chat mode
+- [ ] Embedding generation
 
 ## Installation
 
 Install this plugin in the same environment as [LLM](https://llm.datasette.io/):
 
 ```bash
-llm install llm-fragments-site-text
+llm install llm-fragments-youtube-transcript
 ```
 
 ## Usage
 
-Use `-f 'site:URL'` to fetch and convert a webpage to plaintext markdown with metadata. This plugin uses Trafilatura to extract clean text content and metadata from websites, and formats it as markdown.
+Use `-f 'yt:URL'` to fetch and convert an online video transcript to plaintext.
 
 Example:
 
 ```bash
-llm -f 'site:https://example.com/article' "What is this article about?"
+llm -f 'yt:https://youtube.com/?v=' "Summarize this video."
 ```
 
 The output includes:
-- Site name (if available)
-- Title (if available)
-- Author (if available)
-- Date (if available)
-- Description (if available)
-- Main content (as markdown with links preserved)
+- Title
+- Uploader
+- Date
+- Description
+- Transcription
 
 ## Development
 
 To set up this plugin locally, first checkout the code. Then create a new virtual environment:
 
 ```bash
-cd llm-fragments-site-text
-python -m venv venv
-source venv/bin/activate
-```
-
-Install the dependencies and test dependencies:
-
-```bash
-pip install -e '.[test]'
-```
-
-To run the tests:
-
-```bash
-pytest
+cd llm-fragments-youtube-transcript
+uv sync
+source .venv/bin/activate
 ```
 
 ## Dependencies
 
-- [httpx](https://www.python-httpx.org/): For making HTTP requests
-- [trafilatura](https://trafilatura.readthedocs.io/): For extracting clean text and metadata from websites
+- [youtube-transcript-api](https://github.com/jdepoix/youtube-transcript-api): For extracting transcriptions
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp): For extracting metadata from youtube videos
 - [llm](https://llm.datasette.io/): The LLM CLI tool this plugin extends

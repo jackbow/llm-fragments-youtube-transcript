@@ -8,11 +8,6 @@ yt-dlp is used for metadata (title, uploader, date, description) and youtube-tra
 [![Changelog](https://img.shields.io/github/v/release/jackbow/llm-fragments-youtube-transcript?include_prereleases&label=changelog)](https://github.com/jackbow/llm-fragments-youtube-transcript/releases)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/jackbow/llm-fragments-youtube-transcript/blob/main/LICENSE)
 
-## To do
-
-- [ ] Chat mode
-- [ ] Embedding generation
-
 ## Installation
 
 Install this plugin in the same environment as [LLM](https://llm.datasette.io/):

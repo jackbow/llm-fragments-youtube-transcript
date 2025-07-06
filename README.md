@@ -2,7 +2,7 @@
 
 A fragment loader for [LLM](https://llm.datasette.io/) that converts youtube transcripts into plaintext using [youtube-transcript-api](https://github.com/jdepoix/youtube-transcript-api) and [yt-dlp](https://github.com/yt-dlp/yt-dlp).
 
-yt-dlp is used for metadata (title, uploader, date, description) and youtube-transcript-api is used to fetch the transcript. yt-dlp at time of writing can only write subs to disk.
+yt-dlp is used for metadata (title, uploader, date, description) and youtube-transcript-api is used to fetch the transcript. yt-dlp at time of writing only writes subs to disk.
 
 [![PyPI](https://img.shields.io/pypi/v/llm-fragments-youtube-transcript.svg)](https://pypi.org/project/llm-fragments-youtube-transcript/)
 [![Changelog](https://img.shields.io/github/v/release/jackbow/llm-fragments-youtube-transcript?include_prereleases&label=changelog)](https://github.com/jackbow/llm-fragments-youtube-transcript/releases)

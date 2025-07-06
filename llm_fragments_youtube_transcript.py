@@ -32,21 +32,14 @@ def transcript_loader(url: str) -> llm.Fragment:
         ydl_opts = {'extract_flat': 'discard_in_playlist',
             'fragment_retries': 10,
             'ignoreerrors': 'only_download',
-            'postprocessors': [{'format': 'srt',
-                                'key': 'FFmpegSubtitlesConvertor',
-                                'when': 'before_dl'},
-                                {'key': 'FFmpegConcat',
-                                'only_multi_video': True,
-                                'when': 'playlist'}],
             'retries': 10,
             'skip_download': True,
             'writeautomaticsub': True,
-            'quiet': True,           # Suppress yt-dlp output
-            'no_warnings': True,     # Suppress warnings
-            'subtitlesformat': 'srt',  # Format of subtitles to download
-            'subtitleslangs': ['en']}  # Specify the language of subtitles to download
+            'quiet': True,
+            'no_warnings': True,
+            'subtitleslangs': ['en']} 
         with YoutubeDL(ydl_opts) as ydl:
-            info_dict = ydl.extract_info(url, download=False) # Replace with the desired URL
+            info_dict = ydl.extract_info(url, download=False)
             title = info_dict.get('title', None)
             channel = info_dict.get('channel', None)
             date = info_dict.get('upload_date', None)
@@ -75,20 +68,16 @@ def extract_video_id(url):
     try:
         parsed_url = urlparse(url)
         domain = parsed_url.netloc.lower()
-
         if domain == "www.youtube.com" or domain == "youtube.com":
             if parsed_url.path == "/watch":
                 query_params = parse_qs(parsed_url.query)
                 return query_params.get('v', [None])[0]
-            # Handle other YouTube URL formats if necessary (e.g., /embed/)
             elif parsed_url.path.startswith("/embed/"):
                 return parsed_url.path.split("/")[2]
+            elif parsed_url.path.startswith("/shorts/"):
+                return parsed_url.path.split("/")[2]
         elif domain == "youtu.be":
-            # For youtu.be, the video ID is the path itself
-            # Remove leading slash if present
             return parsed_url.path.lstrip('/')
-        
-        return None # Not a recognized YouTube/youtu.be domain or format
-
+        return None
     except Exception:
         return None

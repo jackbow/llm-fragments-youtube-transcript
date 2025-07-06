@@ -14,7 +14,7 @@ def transcript_loader(url: str) -> llm.Fragment:
     Use yt-dlp to fetch and convert a video transcript to plain text.
 
     Example usage:
-      llm -f 'yt:https://youtube.com/?v=...' Summarize this video.
+      llm -f 'yt:https://youtube.com/watch?v=...' Summarize this video.
     """
     video_info = []
     video_id = extract_video_id(url)

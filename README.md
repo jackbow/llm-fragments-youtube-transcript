@@ -23,7 +23,7 @@ Use `-f 'yt:URL'` to fetch and convert an online video transcript to plaintext.
 Example:
 
 ```bash
-llm -f 'yt:https://youtube.com/?v=' "Summarize this video."
+llm -f 'yt:https://youtube.com/watch?v=' "Summarize this video."
 ```
 
 The output includes:

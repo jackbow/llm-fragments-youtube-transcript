@@ -21,11 +21,12 @@ def transcript_loader(url: str) -> llm.Fragment:
     if not video_id:
         raise ValueError("Invalid YouTube URL: Unable to extract video ID.")
     raw_transcript = YouTubeTranscriptApi().fetch(video_id)
+    transcript = TextFormatter().format_transcript(raw_transcript)
+    transcript = transcript.replace('\n', ' ').replace('[Music]', '')
     transcript = re.sub(
         r'\s\s+',
         ' ',
-        TextFormatter().format_transcript(raw_transcript).replace('[Music]', '')
-    )
+        transcript)
     video_info.append("Transcript: " + transcript)
         
     try:

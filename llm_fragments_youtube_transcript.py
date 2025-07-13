@@ -1,9 +1,11 @@
 import re
+from datetime import datetime
+from urllib.parse import urlparse, parse_qs
+
+import llm
 from yt_dlp import YoutubeDL
 from youtube_transcript_api import YouTubeTranscriptApi
 from youtube_transcript_api.formatters import TextFormatter
-from urllib.parse import urlparse, parse_qs
-import llm
 
 @llm.hookimpl
 def register_fragment_loaders(register):
@@ -43,7 +45,8 @@ def transcript_loader(url: str) -> llm.Fragment:
             info_dict = ydl.extract_info(url, download=False)
             title = info_dict.get('title', None)
             channel = info_dict.get('channel', None)
-            date = info_dict.get('upload_date', None)
+            date = datetime.strptime(info_dict.get('upload_date', None), "%Y%m%d")
+            date = date.strftime("%B %d, %Y")
             description: str = info_dict.get('description', None)
             video_info.append("Description: " + description.replace('\n', ' '))
             video_info.append("Date: " + date)
